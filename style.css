@@ -1,0 +1,268 @@
+/* 1. Базовые настройки экрана */
+:root {
+    --bg-color: #e0decd;
+    --card-color: #d8d8c8;
+    --accent-brown: #605040;
+    --accent-orange: #f08010;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /*background-color: #e0decd;*/
+    background-color: #e0dfcd;
+    /*background-color: var(--bg-color);*/
+    font-family: 'Inter', sans-serif;
+    overflow: hidden; /* Запрещаем скролл самого экрана */
+}
+
+/* 2. Главный контейнер (на весь дисплей) */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    /* Учет челки/островка iPhone */
+    padding-top: env(safe-area-inset-top, 44px);
+}
+
+/* 3. Верхняя кнопка (Сповіщення) */
+.notification-container {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.notification-btn {
+    font-size: 16px;
+    color: #000;
+    font-weight: 550;
+    letter-spacing: 0.05px;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* 4. ЦЕНТРАЛЬНАЯ ОБЛАСТЬ (самое важное) */
+.content-area {
+    flex: 1; /* Заставляет этот блок забрать ВСЁ свободное место */
+    display: flex;
+    flex-direction: column;
+    min-height: 0; /* Позволяет контенту внутри сжиматься/растягиваться правильно */
+    padding: 0 16px;
+    padding-bottom: 95px;/* 100px снизу — это запас, чтобы ФИО не уходило под меню */
+    box-sizing: border-box;
+    min-height: 0;
+}
+
+/* 5. КАРТОЧКА (Растягивается на максимум) */
+.id-card {
+    /*background-color: var(--card-color);*/
+    /*background-color: #d4d3be;*/
+    background-color: #d5d2bf;
+    border-radius: 10px;
+    border: 1px solid #68624a;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    /*height: 75vh;*/
+    height: 100%;
+    min-height: 65vh;
+    margin-bottom: 10vh;
+    box-sizing: border-box;
+    margin-top: 5vh;
+    /*min-height: min-content;*/
+    /*flex: 1; !* Растягивает карточку на всю высоту .content-area *!*/
+}
+
+/* Шапка внутри карточки */
+.card-header {
+    padding: 32px 24px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-title {
+    font-size: 24px;
+    /*letter-spacing: -0.01em;*/
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    margin: 0;
+}
+
+.tryzub-logo {
+    height: 48px;
+    width: auto;
+}
+
+/* Блок с данными (центр карточки) */
+.data-block {
+    padding: 16px 20px 16px 20px;
+    flex: 1;
+}
+
+.data-block-inner {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.user-photo-container {
+    flex-shrink: 0;
+}
+
+.user-photo {
+    width: 120px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.data-items {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+.data-item { margin-bottom: 24px; }
+.data-label { color: #4f4c3f; font-size: 15px; font-weight: 550;
+    letter-spacing: 0.1px;
+    margin-bottom: 4px;
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    /*font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;*/
+}
+
+.data-value { font-size: 17px; font-weight: 500; margin: 0;
+    /* Небольшое сужение межбуквенного расстояния для сходства */
+    letter-spacing: -0.02em;
+    font-family: 'Inter', sans-serif;
+    padding-top: 6px;
+}
+
+/* 7. ФУТЕР КАРТОЧКИ (ФИО и кнопка +) */
+.card-footer {
+    padding: 32px 20px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: transparent;
+}
+
+.user-status { font-family: 'Inter', sans-serif; color: #666; font-size: 15px; margin-bottom: 8px; font-weight: 550;letter-spacing: 0.05px; }
+.user-name { font-family: 'Inter', sans-serif; font-size: 23px; font-weight: 500; line-height: 1; margin: 0; letter-spacing: 0.01px; }
+.bell {
+    height: 18px;
+    width: 18px;
+    padding-top: 5px;
+}
+.add-btn {
+    width: 45px;
+    height: 45px;
+    background-color: var(--accent-orange);
+    border: none;
+    border-radius: 50%;
+    font-size: 31px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    color: #000000;
+    font-weight: 600;
+    display: flex;
+    justify-content: center; /* Центр по горизонтали */
+    align-items: center;     /* Центр по вертикали */
+    /*line-height: 0;*/
+    /*padding-top: 2px;*/
+}
+.button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* --- Нижнее меню --- */
+.bottom-nav {
+    height: 65px; /* Высота меню + home bar */
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 0px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 1%;
+}
+
+.nav-item {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000; /* Цвет по умолчанию */
+    width: 25%;
+}
+
+.nav-item.active {
+    font-weight: 600;
+    /* Не выделяется цветом на скрине, только иконкой */
+}
+
+.nav-label {
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* Заглушки для иконок меню (черные квадраты/линии) */
+.nav-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background-color: #000;*/
+    border-radius: 4px;
+}
+
+/* Имитация разных иконок */
+.icon-id { height: 18px; margin-top: 3px; }
+.icon-services { background: none; border: 2px solid #000; border-radius: 2px; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; padding: 2px; }
+.icon-services::before, .icon-services::after { content: ''; background: #000; }
+.icon-vacancies { background: none; border: 2px solid #000; transform: rotate(45deg); width: 18px; height: 18px; }
+.icon-menu { background: none; display: flex; flex-direction: column; justify-content: space-between; height: 16px; margin-top: 4px;}
+.icon-menu::before, .icon-menu::after { content:''; background: #000; height: 2px; width: 24px; }
+.icon-menu span { background: #000; height: 2px; width: 24px; display: block;}
+
+
+/* Полоска домашней страницы iOS */
+.ios-home-bar {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 134px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 3px;
+}
+
+.bell-icon {
+    filter: brightness(0);
+}
