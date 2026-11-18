@@ -196,50 +196,62 @@ body, html {
 }
 
 /* --- Нижнее меню --- */
+/* --- Нижнее меню --- */
 .bottom-nav {
-    height: 65px; /* Высота меню + home bar */
-    background-color: #fff;
-    border-top: 1px solid #e0e0e0;
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: calc(env(safe-area-inset-bottom, 12px) + 12px);
+    height: 72px;
+    padding: 6px;
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 0px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-bottom: 1%;
+    align-items: stretch;
+    gap: 4px;
+    background: #ffffff; /* Белый цвет фона как на макете */
+    border-radius: 40px; /* Сильное закругление (pill-shape) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Легкая тень для отделения от фона */
+    z-index: 100;
 }
 
 .nav-item {
-    text-decoration: none;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #000; /* Цвет по умолчанию */
-    width: 25%;
+    justify-content: center;
+    gap: 4px;
+    border: 0;
+    background: transparent;
+    border-radius: 30px; /* Закругление для фона активной кнопки */
+    color: #000000;
+    font: 600 12px/1 'Inter', sans-serif;
+    text-decoration: none; /* Убирает подчеркивание ссылок */
+    cursor: pointer;
+    transition: background .25s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-item.active {
+    background: #f1f0e8; /* Светло-бежевый/серый фон для активной вкладки */
     font-weight: 600;
-    /* Не выделяется цветом на скрине, только иконкой */
 }
 
 .nav-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     margin-top: 4px;
 }
 
-/* Заглушки для иконок меню (черные квадраты/линии) */
 .nav-icon {
     width: 28px;
     height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /*background-color: #000;*/
     border-radius: 4px;
 }
+
 
 /* Имитация разных иконок */
 .icon-id { height: 18px; margin-top: 3px; }
